@@ -1,23 +1,42 @@
-function frequency(arr, options) {
+// function frequency(arr, options) {
+//   const obj = new Map();
+//   for(const item of arr) {
+//     let key;
+//     if(options?.hasOwnProperty('criteria')) {
+//       key = options.criteria(item)
+//     } else {
+//       key = item;
+//     }
+
+//     if(!obj.has(key)){
+//       obj.set(key, 0)
+//     }
+//     obj.set(key, obj.get(key) + 1)
+//   }
+//   if (options?.hasOwnProperty('compareTo')) {
+//     return Array.from(obj).sort((a, b) => options.compareTo(a[0], b[0]))
+//   }
+//   return Array.from(obj).sort((a, b) => a[0] < b[0] ? -1 : 1)
+// }
+
+function frequency(arr, options = {}) {
   const obj = new Map();
+
+  const {
+    criteria = x => x,
+    compareTo = (a, b) => a < b ? -1 : 1,
+  } = options;
+
   for(const item of arr) {
-    let key;
-    if(options?.hasOwnProperty('criteria')) {
-      key = options.criteria(item)
-    } else {
-      key = item;
-    }
+    const key = criteria(item);
+
     if(!obj.has(key)){
       obj.set(key, 0)
     }
     obj.set(key, obj.get(key) + 1)
   }
-  if (options?.hasOwnProperty('compareTo')) {
-    return Array.from(obj).sort((a, b) => options.compareTo(a[0], b[0]))
-  }
-  return Array.from(obj).sort((a, b) => a[0] < b[0] ? -1 : 1)
+  return Array.from(obj).sort((a, b) => compareTo(a[0], b[0], a[1], b[1]))
 }
-
 
 
 console.log(frequency([1, 10, 12, 2, 1, 10, 2, 2]));

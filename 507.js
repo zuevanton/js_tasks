@@ -1,8 +1,6 @@
-function compose(fn1, fn2) {
+function compose(...fns) {
   return x => {
-    if(!arguments.length) return x
-    if(arguments.length === 1) return fn1(x)
-    return fn1.call(null, fn2.apply(null, [x, ...arguments]))
+    return fns.reduceRight((acc, fn) => fn(acc), x)
   }
 }
 
