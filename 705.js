@@ -1,15 +1,14 @@
 const persistence = num => {
-  num = num.toString();
-  if(num.length === 1) {
+  if(num < 10) {
     return 0
   }
+
+  const next = num
+    .toString()
+    .split('')
+    .reduce((acc, next) => acc * next, 1)
   
-  let multiplyNum = 1;
-  for(const item of num) {
-    multiplyNum *= item;
-  }
-  
-  return 1 + persistence(multiplyNum)
+  return 1 + persistence(next)
 }
 
 console.log(persistence(39)) // 3
