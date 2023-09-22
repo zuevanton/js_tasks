@@ -23,5 +23,4 @@ console.log(packBagpack(scores, weights, capacity)) // 29
 
 // https://sinyakov.com/javascript/workbook/async/
 
-// https://leetcode.com/problems/cache-with-time-limit/
-// https://leetcode.com/problems/debounce/
+// 
