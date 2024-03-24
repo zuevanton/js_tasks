@@ -12,8 +12,7 @@ async function cube(x) {
 async function compute(x) {
   try {
     const doubledX = await double(x);
-    const t = cube(x)
-    return cube(x) // В случае compute('2') возвращаем rejected промис и не попадаем в catch
+    return await cube(doubledX) // В случае compute('2') возвращаем rejected промис и не попадаем в catch
   } catch (e) {
     throw "Error while computing";
   } 
